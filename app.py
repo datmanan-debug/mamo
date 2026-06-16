@@ -24,7 +24,7 @@ st.markdown("""
     .result-title {
         font-size: 26px;
         font-weight: bold;
-        color: #70264E !important;
+        color: #C2185B !important;
         margin-bottom: 25px;
     }
     
@@ -43,7 +43,7 @@ st.markdown("""
     /* ستايل النتيجة الطبيعية (حدود وردية صارخة وخلفية بيضاء) */
     .normal-result {
         border: 4px solid #C73B8A !important;
-        background-color: #FFFFFF !important;
+        background-color: #C2185B !important;
         color: #C73B8A !important;
     }
     
@@ -57,7 +57,7 @@ st.markdown("""
     /* --- إجبار أزرار التحكم (Back و Next) على اللون الوردي الصارخ وطرد البنفسجي --- */
     div.stButton > button {
         background-color: #C73B8A !important;
-        color: #FFFFFF !important;
+        color: #C2185B !important;
         border: none !important;
         border-radius: 25px !important;
         padding: 12px 40px !important;
@@ -71,14 +71,14 @@ st.markdown("""
     /* تأثير حركي عند تمرير الماوس على أزرار باك ونيكست */
     div.stButton > button:hover {
         background-color: #A32D6F !important;
-        color: #FFFFFF !important;
+        color: #C2185B !important;
         border: none !important;
     }
     
     /* إلغاء أي تأثير للون البنفسجي عند الضغط أو التركيز على الأزرار */
     div.stButton > button:focus {
         background-color: #C73B8A !important;
-        color: #FFFFFF !important;
+        color: #C2185B !important;
         border: none !important;
         box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
     }
