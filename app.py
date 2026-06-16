@@ -3,12 +3,12 @@ import streamlit as st
 # إعدادات الصفحة الأساسية
 st.set_page_config(page_title="Mammogram Analysis Result", layout="centered")
 
-# إضافة الستايل الخاص (CSS) لتطابق الألوان 100% مع الواجهات السابقة
+# إضافة الستايل الخاص (CSS) مع إجبار الألوان الوردية الصارخة 100%
 st.markdown("""
     <style>
     /* تغيير خلفية التطبيق بأكمله إلى الأبيض */
     .stApp {
-        background-color: #FFFFFF;
+        background-color: #FFFFFF !important;
     }
     
     /* حاوية مخصصة لتوسط النتيجة في الشاشة */
@@ -20,11 +20,11 @@ st.markdown("""
         margin-top: 50px;
     }
     
-    /* عنوان النتيجة قبل القيمة بنفس لون الخط الداكن عندك */
+    /* عنوان النتيجة قبل القيمة */
     .result-title {
         font-size: 26px;
         font-weight: bold;
-        color: #70264E;
+        color: #70264E !important;
         margin-bottom: 25px;
     }
     
@@ -42,20 +42,20 @@ st.markdown("""
     
     /* ستايل النتيجة الطبيعية (حدود وردية صارخة وخلفية بيضاء) */
     .normal-result {
-        border: 3.5px solid #C73B8A;
-        background-color: #FFFFFF;
-        color: #C73B8A;
+        border: 4px solid #C73B8A !important;
+        background-color: #FFFFFF !important;
+        color: #C73B8A !important;
     }
     
     /* ستايل النتيجة غير الطبيعية (خلفية وردية صارخة صلبة) */
     .abnormal-result {
-        background-color: #C73B8A;
-        color: #FFFFFF;
-        border: 3.5px solid #C73B8A;
+        background-color: #C73B8A !important;
+        color: #FFFFFF !important;
+        border: 4px solid #C73B8A !important;
     }
     
-    /* أزرار التنقل السفلي (Back و Next) باللون الوردي الصارخ مية بالمية */
-    .nav-btn button {
+    /* --- إجبار أزرار التحكم (Back و Next) على اللون الوردي الصارخ وطرد البنفسجي --- */
+    div.stButton > button {
         background-color: #C73B8A !important;
         color: #FFFFFF !important;
         border: none !important;
@@ -64,11 +64,23 @@ st.markdown("""
         font-size: 18px !important;
         font-weight: bold !important;
         width: 140px !important;
-        transition: all 0.2s ease;
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: all 0.2s ease !important;
     }
-    .nav-btn button:hover {
-        background-color: #A32D6F !important; /* تغميق بسيط عند تمرير الماوس */
+    
+    /* تأثير حركي عند تمرير الماوس على أزرار باك ونيكست */
+    div.stButton > button:hover {
+        background-color: #A32D6F !important;
+        color: #FFFFFF !important;
+        border: none !important;
+    }
+    
+    /* إلغاء أي تأثير للون البنفسجي عند الضغط أو التركيز على الأزرار */
+    div.stButton > button:focus {
+        background-color: #C73B8A !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -78,10 +90,10 @@ st.markdown("""
 st.markdown('<div class="result-container">', unsafe_allow_html=True)
 st.markdown('<div class="result-title">Analysis Result:</div>', unsafe_allow_html=True)
 
-# النتيجة الأولى: NORMAL مع المسافة المطلوبة
+# النتيجة الأولى: NORMAL مع المسافة المطلوبة والحدود الوردية
 st.markdown('<div class="status-display normal-result">NORMAL</div>', unsafe_allow_html=True)
 
-# النتيجة الثانية: ABNORMAL بنفس اللون الوردي الصارخ
+# النتيجة الثانية: ABNORMAL باللون الوردي الصارخ الكامل
 st.markdown('<div class="status-display abnormal-result">ABNORMAL</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
@@ -91,17 +103,19 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.write("<br>", unsafe_allow_html=True) 
 
 
-# --- أزرار التحكم (Back و Next) متقاربة باللون الوردي الصارخ في المنتصف ---
+# --- أزرار التحكم (Back و Next) متقاربة باللون الوردي الصارخ الإجباري ---
 nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1.3, 1, 1, 1.3])
 
 with nav_col2:
-    st.markdown('<div class="nav-btn" style="display: flex; justify-content: flex-end;">', unsafe_allow_html=True)
+    # تم محاذاة حاوية الزر لليمين لتقريبه من النيكست
+    st.markdown('<div style="display: flex; justify-content: flex-end;">', unsafe_allow_html=True)
     if st.button("« Back"):
-        st.info("الرجوع...")
+        st.write("") # مكان الأكشن للرجوع
     st.markdown('</div>', unsafe_allow_html=True)
 
 with nav_col3:
-    st.markdown('<div class="nav-btn" style="display: flex; justify-content: flex-start;">', unsafe_allow_html=True)
+    # تم محاذاة حاوية الزر لليسار لتقريبه من الباك
+    st.markdown('<div style="display: flex; justify-content: flex-start;">', unsafe_allow_html=True)
     if st.button("Next »"):
-        st.info("التالي...")
+        st.write("") # مكان الأكشن للتالي
     st.markdown('</div>', unsafe_allow_html=True)
