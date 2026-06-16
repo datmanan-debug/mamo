@@ -44,13 +44,13 @@ st.markdown("""
     .normal-result {
         border: 4px solid #E91E8C !important;
         background-color: ##FDF8FB !important;
-        color: #FFFFFF !important;
+        color: #000000 !important;
     }
     
     /* ستايل النتيجة غير الطبيعية (خلفية وردية صارخة صلبة) */
     .abnormal-result {
         background-color: #C73B8A !important;
-        color: #FFFFFF !important;
+        color: #000000 !important;
         border: 4px solid #E91E8C !important;
     }
     
