@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الأساسية
 st.set_page_config(page_title="Mammogram Analysis Result", layout="centered")
 
-# إضافة الستايل الخاص (CSS) لتنسيق الألوان لعرض النتيجة والتحكم
+# إضافة الستايل الخاص (CSS) لتطابق الألوان 100% مع الواجهات السابقة
 st.markdown("""
     <style>
     /* تغيير خلفية التطبيق بأكمله إلى الأبيض */
@@ -20,11 +20,11 @@ st.markdown("""
         margin-top: 50px;
     }
     
-    /* عنوان النتيجة قبل القيمة */
+    /* عنوان النتيجة قبل القيمة بنفس لون الخط الداكن عندك */
     .result-title {
         font-size: 26px;
         font-weight: bold;
-        color: #333333;
+        color: #70264E;
         margin-bottom: 25px;
     }
     
@@ -36,71 +36,63 @@ st.markdown("""
         font-weight: bold;
         text-align: center;
         padding: 15px 0;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
-        margin-bottom: 25px; /* إضافة مسافة واضحة بين الكارتين */
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+        margin-bottom: 25px; /* المسافة بين الكارتين */
     }
     
-    /* ستايل النتيجة الطبيعية (حدود وردية واضحة وخلفية بيضاء) */
+    /* ستايل النتيجة الطبيعية (حدود وردية صارخة وخلفية بيضاء) */
     .normal-result {
-        border: 3px solid #C43785;
+        border: 3.5px solid #C73B8A;
         background-color: #FFFFFF;
-        color: #C43785;
+        color: #C73B8A;
     }
     
-    /* ستايل النتيجة غير الطبيعية (خلفية وردية صلبة كاملة) */
+    /* ستايل النتيجة غير الطبيعية (خلفية وردية صارخة صلبة) */
     .abnormal-result {
-        background-color: #C43785;
+        background-color: #C73B8A;
         color: #FFFFFF;
-        border: 3px solid #C43785;
+        border: 3.5px solid #C73B8A;
     }
     
-    /* حاوية مخصصة لتقريب أزرار التنقل السفلي في المنتصف */
-    .nav-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px; /* مسافة قريبة بين زر باك ونيكست */
-        margin-top: 40px;
-        width: 100%;
-    }
-    
-    /* أزرار التنقل باللون الوردي الصارخ/الصلب مثل الواجهات السابقة */
+    /* أزرار التنقل السفلي (Back و Next) باللون الوردي الصارخ مية بالمية */
     .nav-btn button {
-        background-color: #C43785 !important;
+        background-color: #C73B8A !important;
         color: #FFFFFF !important;
         border: none !important;
         border-radius: 25px !important;
         padding: 12px 40px !important;
         font-size: 18px !important;
         font-weight: bold !important;
-        width: 130px !important;
-        transition: all 0.3s ease;
+        width: 140px !important;
+        transition: all 0.2s ease;
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
     }
     .nav-btn button:hover {
-        background-color: #A12669 !important;
+        background-color: #A32D6F !important; /* تغميق بسيط عند تمرير الماوس */
     }
     </style>
 """, unsafe_allow_html=True)
 
 
-# --- جزء العرض المركزي للنتائج ---
+# --- عرض النتائج في المنتصف ---
 st.markdown('<div class="result-container">', unsafe_allow_html=True)
 st.markdown('<div class="result-title">Analysis Result:</div>', unsafe_allow_html=True)
 
-# عرض النتيجة الأولى: NORMAL وبينهما مسافة
+# النتيجة الأولى: NORMAL مع المسافة المطلوبة
 st.markdown('<div class="status-display normal-result">NORMAL</div>', unsafe_allow_html=True)
 
-# عرض النتيجة الثانية: ABNORMAL
+# النتيجة الثانية: ABNORMAL بنفس اللون الوردي الصارخ
 st.markdown('<div class="status-display abnormal-result">ABNORMAL</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 
-# مسافة عزل صغيرة لتنسيق الواجهة
+# مسافة صغيرة للترتيب قبل أزرار التحكم
 st.write("<br>", unsafe_allow_html=True) 
 
 
 # --- أزرار التحكم (Back و Next) متقاربة باللون الوردي الصارخ في المنتصف ---
-nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1.5, 1, 1, 1.5])
+nav_col1, nav_col2, nav_col3, nav_col4 = st.columns([1.3, 1, 1, 1.3])
 
 with nav_col2:
     st.markdown('<div class="nav-btn" style="display: flex; justify-content: flex-end;">', unsafe_allow_html=True)
