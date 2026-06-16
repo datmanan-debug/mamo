@@ -42,7 +42,7 @@ st.markdown("""
     
     /* ستايل النتيجة الطبيعية (حدود وردية صارخة وخلفية بيضاء) */
     .normal-result {
-        border: 4px solid #FFFFFF !important;
+        border: 4px solid #E91E8C !important;
         background-color: ##FDF8FB !important;
         color: #FFFFFF !important;
     }
@@ -51,7 +51,7 @@ st.markdown("""
     .abnormal-result {
         background-color: #C73B8A !important;
         color: #FFFFFF !important;
-        border: 4px solid #FFFFFF !important;
+        border: 4px solid #E91E8C !important;
     }
     
     /* --- إجبار أزرار التحكم (Back و Next) على اللون الوردي الصارخ وطرد البنفسجي --- */
