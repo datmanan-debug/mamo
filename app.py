@@ -51,7 +51,7 @@ st.markdown("""
     .abnormal-result {
         background-color: #C73B8A !important;
         color: #FFFFFF !important;
-        border: 4px solid #C73B8A !important;
+        border: 4px solid #FFFFFF !important;
     }
     
     /* --- إجبار أزرار التحكم (Back و Next) على اللون الوردي الصارخ وطرد البنفسجي --- */
