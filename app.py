@@ -43,7 +43,7 @@ st.markdown("""
     /* ستايل النتيجة الطبيعية (حدود وردية صارخة وخلفية بيضاء) */
     .normal-result {
         border: 4px solid #FFFFFF !important;
-        background-color: #C2185B !important;
+        background-color: ##FDF8FB !important;
         color: #FFFFFF !important;
     }
     
