@@ -3,7 +3,7 @@ import streamlit as st
 # إعدادات الصفحة الأساسية
 st.set_page_config(page_title="Mammogram Analysis Result", layout="centered")
 
-# إضافة الستايل الخاص (CSS) لتنسيق الألوان والأزرار باللون الوردي المعتمد بدقة
+# إضافة الستايل الخاص (CSS) لتنسيق الألوان لعرض النتيجة والتحكم
 st.markdown("""
     <style>
     /* تغيير خلفية التطبيق بأكمله إلى الأبيض */
@@ -11,89 +11,89 @@ st.markdown("""
         background-color: #FFFFFF;
     }
     
-    /* حاوية مخصصة لتوسط الأزرار عمودياً في الشاشة */
-    .main-container {
+    /* حاوية مخصصة لتوسط النتيجة في الشاشة */
+    .result-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 40vh;
-        margin-top: 50px;
+        margin-top: 60px;
     }
     
-    /* تنسيق أزرار الخيارات الأساسية (Normal / Abnormal) */
-    div.stButton > button {
-        width: 100%;
-        border-radius: 25px; /* حواف دائرية ناعمة تتناسق مع واجهاتك السابقة */
-        font-size: 20px !important;
-        font-weight: bold !important;
-        padding: 12px 35px !important;
-        transition: all 0.3s ease;
+    /* عنوان النتيجة قبل القيمة */
+    .result-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 15px;
     }
     
-    /* زر NORMAL (خلفية بيضاء وحدود وردية) */
-    div[data-testid="stHorizontalBlock"] > div:nth-child(1) button {
-        border: 2px solid #E6A2C5 !important;
-        background-color: #FFFFFF !important;
-        color: #000000 !important;
-    }
-    div[data-testid="stHorizontalBlock"] > div:nth-child(1) button:hover {
-        background-color: #E6A2C5 !important;
-        color: #FFFFFF !important;
+    /* تنسيق كارت النتيجة النهائي الدائري */
+    .status-display {
+        width: 280px;
+        border-radius: 25px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 15px 0;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
     }
     
-    /* زر ABNORMAL (خلفية وردية كاملة والكتابة سوداء أو بيضاء حسب رغبتك) */
-    div[data-testid="stHorizontalBlock"] > div:nth-child(2) button {
-        background-color: #E6A2C5 !important;
-        color: #FFFFFF !important;
-        border: 2px solid #E6A2C5 !important;
+    /* ستايل النتيجة إذا كانت طبيعية */
+    .normal-result {
+        border: 3px solid #a85585;
+        background-color: #FFFFFF;
+        color: #a85585;
     }
-    div[data-testid="stHorizontalBlock"] > div:nth-child(2) button:hover {
-        background-color: #D185A6 !important;
-        border-color: #D185A6 !important;
+    
+    /* ستايل النتيجة إذا كانت غير طبيعية */
+    .abnormal-result {
+        background-color: #a85585;
+        color: #FFFFFF;
+        border: 3px solid #a85585;
     }
     
     /* أزرار التنقل السفلي (Back و Next) */
-    .nav-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 100px;
-        width: 100%;
-    }
-    
     .nav-btn button {
-        background-color: #E6A2C5 !important;
+        background-color: #D692BA !important;
         color: #FFFFFF !important;
         border: none !important;
-        border-radius: 20px !important;
-        padding: 8px 30px !important;
-        font-size: 16px !important;
+        border-radius: 25px !important;
+        padding: 10px 35px !important;
+        font-size: 18px !important;
+        font-weight: bold !important;
     }
     .nav-btn button:hover {
-        background-color: #D185A6 !important;
+        background-color: #bd7fa3 !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# بداية الحاوية لتوسيط العناصر
-st.markdown('<div class="main-container">', unsafe_allow_html=True)
 
-# عرض أزرار الحالة (NORMAL و ABNORMAL) متجاورين في المنتصف
-col1, col2 = st.columns([1, 1])
+# --- هنا الربط مع الخوارزمية ---
+# افتراضياً، هنا الخوارزمية مالتك رح تنطي النتيجة (إما "NORMAL" أو "ABNORMAL")
+# حالياً خليتها "ABNORMAL" كمثال، وتكدر تغيرها إلى "NORMAL" لتجربة الشكلين
+ai_result = "ABNORMAL" 
 
-with col1:
-    if st.button("NORMAL"):
-        st.success("تم اختيار: طبيعي (NORMAL)")
 
-with col2:
-    if st.button("ABNORMAL"):
-        st.warning("تم اختيار: غير طبيعي (ABNORMAL)")
+# عرض النتيجة المباشرة تلقائياً داخل الحاوية
+st.markdown('<div class="result-container">', unsafe_allow_html=True)
+st.markdown('<div class="result-title">Analysis Result:</div>', unsafe_allow_html=True)
+
+if ai_result == "NORMAL":
+    # يعرض مربع طبيعي (حدود وردية وخلفية بيضاء) تلقائياً بدون ضغط
+    st.markdown('<div class="status-display normal-result">NORMAL</div>', unsafe_allow_html=True)
+else:
+    # يعرض مربع غير طبيعي (خلفية وردية كاملة) تلقائياً بدون ضغط
+    st.markdown('<div class="status-display abnormal-result">ABNORMAL</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 
-# إضافة أزرار التحكم السفلي (Back و Next) متباعدين على الأطراف كما في واجهاتك السابقة
-st.write("") 
+# مسافة عزل قبل أزرار التنقل السفلية
+st.write("<br><br><br><br>", unsafe_allow_html=True) 
+
+# أزرار التحكم (Back و Next) متباعدين على الأطراف بنفس التنسيق المستقر للواجهات السابقة
 nav_col1, nav_col2 = st.columns([1, 1])
 
 with nav_col1:
@@ -103,8 +103,7 @@ with nav_col1:
     st.markdown('</div>', unsafe_allow_html=True)
 
 with nav_col2:
-    # لتوجيه زر Next إلى أقصى اليمين
-    st.markdown('<div class="nav-btn" style="text-align: right; display: flex; justify-content: flex-end;">', unsafe_allow_html=True)
+    st.markdown('<div class="nav-btn" style="display: flex; justify-content: flex-end;">', unsafe_allow_html=True)
     if st.button("Next »"):
         st.info("الانتقال للواجهة التالية...")
     st.markdown('</div>', unsafe_allow_html=True)
