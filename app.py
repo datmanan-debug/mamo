@@ -57,7 +57,7 @@ st.markdown("""
     /* --- إجبار أزرار التحكم (Back و Next) على اللون الوردي الصارخ وطرد البنفسجي --- */
     div.stButton > button {
         background-color: #C73B8A !important;
-        color: #C2185B !important;
+        color: #FFFFFF !important;
         border: none !important;
         border-radius: 25px !important;
         padding: 12px 40px !important;
