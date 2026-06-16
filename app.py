@@ -17,7 +17,8 @@ st.markdown("""
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-top: 60px;
+        gap: 20px; /* المسافة بين العنصرين */
+        margin-top: 50px;
     }
     
     /* عنوان النتيجة قبل القيمة */
@@ -25,35 +26,35 @@ st.markdown("""
         font-size: 24px;
         font-weight: bold;
         color: #333333;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     
     /* تنسيق كارت النتيجة النهائي الدائري */
     .status-display {
         width: 280px;
         border-radius: 25px;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: bold;
         text-align: center;
-        padding: 15px 0;
+        padding: 12px 0;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
     }
     
-    /* ستايل النتيجة إذا كانت طبيعية */
+    /* ستايل النتيجة الطبيعية (حدود وردية وخلفية بيضاء) */
     .normal-result {
-        border: 3px solid #a85585;
+        border: 2px solid #a85585;
         background-color: #FFFFFF;
         color: #a85585;
     }
     
-    /* ستايل النتيجة إذا كانت غير طبيعية */
+    /* ستايل النتيجة غير الطبيعية (خلفية وردية كاملة) */
     .abnormal-result {
         background-color: #a85585;
         color: #FFFFFF;
-        border: 3px solid #a85585;
+        border: 2px solid #a85585;
     }
     
-    /* أزرار التنقل السفلي (Back و Next) */
+    /* أزرار التنقل السفلي (Back و Next) الفاتحة كباقي الواجهات */
     .nav-btn button {
         background-color: #D692BA !important;
         color: #FFFFFF !important;
@@ -70,28 +71,30 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# --- هنا الربط مع الخوارزمية ---
-# افتراضياً، هنا الخوارزمية مالتك رح تنطي النتيجة (إما "NORMAL" أو "ABNORMAL")
-# حالياً خليتها "ABNORMAL" كمثال، وتكدر تغيرها إلى "NORMAL" لتجربة الشكلين
-ai_result = "ABNORMAL" 
-
-
-# عرض النتيجة المباشرة تلقائياً داخل الحاوية
+# --- جزء العرض (حالياً يعرض الإثنين معاً لمعاينة الشكل واللون) ---
 st.markdown('<div class="result-container">', unsafe_allow_html=True)
 st.markdown('<div class="result-title">Analysis Result:</div>', unsafe_allow_html=True)
 
-if ai_result == "NORMAL":
-    # يعرض مربع طبيعي (حدود وردية وخلفية بيضاء) تلقائياً بدون ضغط
-    st.markdown('<div class="status-display normal-result">NORMAL</div>', unsafe_allow_html=True)
-else:
-    # يعرض مربع غير طبيعي (خلفية وردية كاملة) تلقائياً بدون ضغط
-    st.markdown('<div class="status-display abnormal-result">ABNORMAL</div>', unsafe_allow_html=True)
+# عرض النتيجة الأولى: NORMAL
+st.markdown('<div class="status-display normal-result">NORMAL</div>', unsafe_allow_html=True)
+
+# عرض النتيجة الثانية: ABNORMAL
+st.markdown('<div class="status-display abnormal-result">ABNORMAL</div>', unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 
+# --- 💡 ملاحظة لك للمستقبل عند ربط الخوارزمية 💡 ---
+# لما تكمل الخوارزمية، راح تمسح السطرين اللي فوك (سطور عرض NORMAL و ABNORMAL معاً) وتستبدلهم بـ if وطباعة وحدة بس مثل هيج:
+#
+# if ai_result == "NORMAL":
+#     st.markdown('<div class="status-display normal-result">NORMAL</div>', unsafe_allow_html=True)
+# else:
+#     st.markdown('<div class="status-display abnormal-result">ABNORMAL</div>', unsafe_allow_html=True)
+
+
 # مسافة عزل قبل أزرار التنقل السفلية
-st.write("<br><br><br><br>", unsafe_allow_html=True) 
+st.write("<br><br><br>", unsafe_allow_html=True) 
 
 # أزرار التحكم (Back و Next) متباعدين على الأطراف بنفس التنسيق المستقر للواجهات السابقة
 nav_col1, nav_col2 = st.columns([1, 1])
