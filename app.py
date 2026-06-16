@@ -8,7 +8,7 @@ st.markdown("""
     <style>
     /* تغيير خلفية التطبيق بأكمله إلى الأبيض */
     .stApp {
-        background-color: #FFFFFF !important;
+        background-color: #FDF8FB !important;
     }
     
     /* حاوية مخصصة لتوسط النتيجة في الشاشة */
